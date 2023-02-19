@@ -32,14 +32,17 @@ namespace Two_Sum
         /// </returns>
         public static int[] TwoSum(int[] nums, int target)
         {
-            Dictionary<int, int> dict = new();
+            Dictionary<int, int> dict = new(); 
             for (int i = 0; i < nums.Length; i++)
             {
-                int complementary = target - nums[i];
-                if (dict.ContainsKey(complementary))
+                // Find complement of target and num i 
+                int complement = target - nums[i];
+                // Find another complement in dictionary if found, return a pair of numbers in array
+                if (dict.ContainsKey(complement))
                 {
-                    return new int[] { dict[complementary], i };
+                    return new int[] { dict[complement], i };
                 }
+                // Add a part of complement to dictitonary
                 dict[nums[i]] = i;
             }
             throw new Exception("Not found two numbers that add up to the target.");
